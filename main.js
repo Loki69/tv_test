@@ -1,5 +1,5 @@
 "use strict";
-var news, tpl, html,jsonTest;
+var news, tpl, tpl_img, html, jsonTest;
 news = [];
 news.push({
 	category: "career",
@@ -41,8 +41,15 @@ jsonTest ={
 	rss:news
 }
 
- tpl = "{{#rss}}<div class=\"slide\"> <div class=\"newsImg\"><divclass=\"scrolled\">{{#images}}<div sytle=\"background: url(\"{{.}}\")\"</div>{{/images}}</div><div class=\"description\"><div class=\"tiitle\"><h1><img src=\"1ebab1.jpg\" alt=\"\" class=\"logotip\">{{title}}</h1></div><div class=\"publishDate\">{{publishedDate}}</div><div class=\"sours\">{{source}}</div></div></div></div>{{/rss}}";
+ tpl = "{{#rss}}<div class=\"slide autoplay\"> <div class=\"newsImg\"><div class=\"scrolled\">{{#images}}{{>image}}{{/images}}</div><div class=\"description\"><div class=\"tiitle\"><h1><img src=\"1ebab1.jpg\" alt=\"\" class=\"logotip\">{{title}}</h1></div><div class=\"publishDate\">{{publishedDate}}</div><div class=\"sours\">{{source}}</div></div></div></div>{{/rss}}";
+tpl_img = {image:"<div sytle=\"background: url(\'{{.}}\')\"></div>"}
 
-
-html = Mustache.to_html(tpl, jsonTest);
+html = Mustache.to_html(tpl, jsonTest,tpl_img);
 $('body').html(html);
+
+$('.autoplay').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
