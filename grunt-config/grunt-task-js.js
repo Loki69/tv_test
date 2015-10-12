@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       options: {},
       sources: {
         src: 'temp/babel-out/src/**/*.js',
-        dest: 'dist/js/memoize.js'
+        dest: 'dist/js/main.js'
       },
       test: {
         src: 'temp/babel-out/test/**/*.js',
